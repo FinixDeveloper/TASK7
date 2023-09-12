@@ -1,0 +1,80 @@
+///Get all the countries from Asia continent /region using Filter function
+
+let value = new XMLHttpRequest();
+console.log(value);
+value.open("GET","https://restcountries.com/v3.1/all");
+value.send();
+value.onload=function(){
+    var result =JSON.parse(value.response);
+    result.filter((countries) => {
+        return countries.region ==="Asia";
+  })
+  console.log(result);
+}
+
+
+
+////Get all the countries with a population of less than 2 lakhs using Filter function
+
+let value = new XMLHttpRequest();
+console.log(value);
+value.open("GET","https://restcountries.com/v3.1/all");
+value.send();
+value.onload=function(){
+    var result =JSON.parse(value.response);
+    const populate=result.filter((getdata)=>{
+        return getdata.population<200000;
+   })
+   console.log(populate);}
+
+
+
+///Print the following details name, capital, flag using forEach function
+
+let value = new XMLHttpRequest();
+console.log(value);
+value.open("GET","https://restcountries.com/v3.1/all");
+value.send();
+value.onload=function(){
+    var result =JSON.parse(value.response);
+    result.forEach((getdata)=>{
+        console.log(getdata.name,getdata.capital,getdata.flag);
+    })}
+
+
+
+///Print the total population of countries using reduce function
+
+let value = new XMLHttpRequest();
+console.log(value);
+value.open("GET","https://restcountries.com/v3.1/all");
+value.send();
+value.onload=function(){
+    var result =JSON.parse(value.response);
+    var total = result.reduce((acc,curr) =>{
+        return acc+curr.population;
+    } ,0);
+
+    console.log(total);
+ 
+}
+
+
+
+////Print the country which uses US Dollars as currency.
+
+let value = new XMLHttpRequest();
+console.log(value);
+value.open("GET","https://restcountries.com/v3.1/all");
+value.send();
+value.onload=function(){
+    var data=JSON.parse(value.response);
+   var currency = data.filter((getdata) => {
+     for(let key in getdata.currencies){
+        if(getdata.currencies[key].code === "USD"){
+            return getdata;
+        }
+     }
+   })
+        console.log(currency);
+    }   
